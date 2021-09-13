@@ -9,26 +9,26 @@ class BarChart<T> extends StatelessWidget {
   BarChart({
     required List<T> data,
     required this.dataToValue,
-    this.height = 240.0,
     required this.backgroundDecorations,
     required this.foregroundDecorations,
+    this.height = 240.0,
     this.chartBehaviour = const ChartBehaviour(),
     this.itemOptions = const BarItemOptions(),
     this.stack = false,
-    required Key key,
+    Key? key,
   })  : _mappedValues = [data.map((e) => BarValue<T>(dataToValue!(e))).toList()],
         super(key: key);
 
-   const BarChart.map(
-    this._mappedValues, {
-    this.height = 240.0,
-    required this.backgroundDecorations,
-    required this.foregroundDecorations,
-    this.chartBehaviour = const ChartBehaviour(),
-    this.itemOptions = const BarItemOptions(),
-    this.stack = false,
-    required Key key,
-  })  : dataToValue = null,
+  const BarChart.map(
+      this._mappedValues, {
+        required this.backgroundDecorations,
+        required this.foregroundDecorations,
+        this.height = 240.0,
+        this.chartBehaviour = const ChartBehaviour(),
+        this.itemOptions = const BarItemOptions(),
+        this.stack = false,
+        Key? key,
+      })  : dataToValue = null,
         super(key: key);
 
   final DataToValue<T>? dataToValue;
