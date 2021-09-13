@@ -54,10 +54,17 @@ class _ChartWidget<T> extends StatelessWidget {
           final _itemWidth =
               (size.width.isFinite ? size.width : _constraint.width) /
                   _listSize;
-
+          bool verticalValuesAreVisible = false;
+          state.backgroundDecorations.forEach((element) { 
+            if(element is GridDecoration && element.showVerticalValues) {
+              verticalValuesAreVisible = true;
+            }
+          });
           return GestureDetector(
-            onTapDown: (tapDetails) => state.behaviour._onChartItemClicked(
-                _getClickLocation(_itemWidth, tapDetails.localPosition)),
+            onTapDown: (tapDetails) {
+              Offset test = Offset(tapDetails.localPosition.dx -  (verticalValuesAreVisible ? 27 : 2), tapDetails.localPosition.dy);
+              state.behaviour._onChartItemClicked(_getClickLocation(_itemWidth, test));
+            } ,
             onPanUpdate: (panUpdate) => state.behaviour._onChartItemClicked(
                 _getClickLocation(_itemWidth, panUpdate.localPosition)),
             child: _chart,
