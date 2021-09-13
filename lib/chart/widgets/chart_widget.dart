@@ -61,9 +61,9 @@ class _ChartWidget<T> extends StatelessWidget {
             }
           });
           return GestureDetector(
-            onTapDown: (tapDetails) {
-              Offset test = Offset(tapDetails.localPosition.dx -  (verticalValuesAreVisible ? 27 : 2), tapDetails.localPosition.dy);
-              state.behaviour._onChartItemClicked(_getClickLocation(_itemWidth, test));
+            onTapUp: (tapDetails) {
+              Offset offsetValue = Offset(tapDetails.localPosition.dx -  (verticalValuesAreVisible ? 27 : 2), tapDetails.localPosition.dy);
+              state.behaviour._onChartItemClicked(_getClickLocation(_itemWidth, offsetValue));
             } ,
             onPanUpdate: (panUpdate) => state.behaviour._onChartItemClicked(
                 _getClickLocation(_itemWidth, panUpdate.localPosition)),
