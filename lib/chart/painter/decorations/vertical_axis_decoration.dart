@@ -147,7 +147,7 @@ class VerticalAxisDecoration extends DecorationPainter {
           style: legendFontStyle,
         ),
         textAlign: valuesAlign,
-        maxLines: 1,
+        maxLines: 2,
         textDirection: TextDirection.ltr,
       )..layout(
           maxWidth: _itemWidth,
