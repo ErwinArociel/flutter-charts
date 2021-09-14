@@ -256,8 +256,8 @@ class HorizontalAxisDecoration extends DecorationPainter {
     final _isEnd = legendPosition == HorizontalLegendPosition.end;
 
     return EdgeInsets.only(
-      right: _isEnd ? _maxTextWidth : 0.0,
-      left: _isEnd ? 0.0 : _maxTextWidth,
+      right: _maxTextWidth,
+      left: _maxTextWidth,
     );
   }
 
