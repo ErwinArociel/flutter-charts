@@ -64,7 +64,7 @@ class BarGeometryPainter<T> extends GeometryPainter<T> {
                 _minValue,
           ),
           Offset(
-            _itemWidth + _padding.left,
+            _itemWidth + _padding.left - 12,
             _itemMaxValue * _verticalMultiplier - _minValue,
           ),
         ),
