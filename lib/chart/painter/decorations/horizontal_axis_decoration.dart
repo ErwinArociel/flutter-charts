@@ -107,11 +107,14 @@ class HorizontalAxisDecoration extends DecorationPainter {
 
   String? _longestText;
 
+  double? widthText;
+
   @override
   void initDecoration(ChartState state) {
     super.initDecoration(state);
     if (showValues) {
       _longestText = axisValue.call(state.data.maxValue.toInt()).toString();
+      widthText = _textWidth(_longestText, legendFontStyle);
 
       if ((_longestText?.length ?? 0) < (horizontalAxisUnit?.length ?? 0.0)) {
         _longestText = horizontalAxisUnit;
@@ -131,7 +134,10 @@ class HorizontalAxisDecoration extends DecorationPainter {
         size.height + state.defaultMargin.top - state.defaultPadding.top);
 
     final _maxValue = state.data.maxValue - state.data.minValue;
-    final _size = (state.defaultPadding * _endWithChart).deflateSize(size);
+    double textPaddingValue = (state.backgroundDecorations[0] as GridDecoration).horizontalValuesPadding != null ? (state.backgroundDecorations[0] as GridDecoration).horizontalValuesPadding!.left +  (state.backgroundDecorations[0] as GridDecoration).horizontalValuesPadding!.right : 0;
+    double textOffsetValue = (state.backgroundDecorations[0] as GridDecoration).showHorizontalValues ? (state.backgroundDecorations[0] as GridDecoration)._horizontalAxisDecoration.widthText! + textPaddingValue : textPaddingValue;
+    Size _size = (state.defaultPadding * _endWithChart).deflateSize(size);
+    _size = Size(_size.width + textOffsetValue, _size.height);
     final scale = _size.height / _maxValue;
 
     final gridPath = Path();
@@ -161,7 +167,6 @@ class HorizontalAxisDecoration extends DecorationPainter {
         continue;
       }
 
-      final _width = _textWidth(_longestText, legendFontStyle);
       final _textPainter = TextPainter(
         text: TextSpan(
           text: _text,
@@ -171,8 +176,8 @@ class HorizontalAxisDecoration extends DecorationPainter {
         maxLines: 1,
         textDirection: TextDirection.ltr,
       )..layout(
-          maxWidth: _width,
-          minWidth: _width,
+          maxWidth: widthText!,
+          minWidth: widthText!,
         );
 
       final _positionEnd = (size.width - state.defaultMargin.right) -
