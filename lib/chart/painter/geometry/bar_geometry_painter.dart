@@ -64,7 +64,7 @@ class BarGeometryPainter<T> extends GeometryPainter<T> {
                 _minValue,
           ),
           Offset(
-            _itemWidth + _padding.left - 12,
+            _itemWidth + _padding.left - min((state.defaultMargin.vertical / (Device.get().isTablet ? 1.5 : 1.0) / state.data.listSize), size.width / 1.8),
             _itemMaxValue * _verticalMultiplier - _minValue,
           ),
         ),

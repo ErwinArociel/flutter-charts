@@ -159,11 +159,11 @@ class SelectedItemDecoration extends DecorationPainter {
     canvas.drawRect(
       Rect.fromPoints(
         Offset(
-          state.itemOptions.padding.left + _itemWidth / 2 - _size / 2 - 6,
+          state.itemOptions.padding.left + _itemWidth / 2 - _size / 2 - min((state.defaultMargin.vertical / 2 / (Device.get().isTablet ? 1.5 : 1.0) / state.data.listSize), size.width /2/ 1.8),
           _itemMaxValue * scale,
         ),
         Offset(
-          state.itemOptions.padding.left + _itemWidth / 2 + _size / 2 - 6,
+          state.itemOptions.padding.left + _itemWidth / 2 + _size / 2 - min((state.defaultMargin.vertical / 2 / (Device.get().isTablet ? 1.5 : 1.0) / state.data.listSize), size.width /2/ 1.8),
           size.height - textSize * 0.2,
         ),
       ),

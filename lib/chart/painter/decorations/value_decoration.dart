@@ -55,7 +55,7 @@ class ValueDecoration extends DecorationPainter {
     _maxValuePainter.paint(
       canvas,
       Offset(
-        width * alignment.x - 2.5,
+        width * alignment.x,
         -_itemMaxValue * verticalMultiplier -
             minValue -
             _maxValuePainter.height * 0.2 +

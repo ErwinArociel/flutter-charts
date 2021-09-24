@@ -14,6 +14,7 @@ dependencies:
 
   path_drawing: ^0.5.1
   collection: ^1.15.0
+  flutter_device_type: ^0.4.0
 
 dev_dependencies:
   flutter_test:
